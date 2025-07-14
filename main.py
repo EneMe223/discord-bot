@@ -84,8 +84,5 @@ async def on_message(message):
         print(f"❌ Error in on_message: {e}")
 
 
-# Flaskを起動し、Replit常駐化
-keep_alive()
-
 # Bot起動
 bot.run(TOKEN)
