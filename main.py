@@ -79,6 +79,10 @@ async def on_message(message):
     except Exception as e:
         print(f"❌ Error in on_message: {e}")
 
+# Bot起動前にTOKENの中身を確認（デバッグ用）
+print(f"[DEBUG] TOKEN is: {TOKEN}")
+if TOKEN is None:
+    raise ValueError("❌ TOKENがNoneです！環境変数が読み込まれていません！")
 
 # Bot起動
 bot.run(TOKEN)
