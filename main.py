@@ -66,16 +66,23 @@ async def on_member_join(member):
         else:
             print("⚠️ Log channel not found.")
 
-# 「こんにちは」に反応するシンプルなメッセージ機能
+# 「こんにちは」に反応するシンプルなメッセージ機能（エラーハンドリング付き）
 @bot.event
 async def on_message(message):
-    if message.author == bot.user:
-        return
+    try:
+        print(f"[DEBUG] message from {message.author}: {message.content}")
 
-    if "こんにちは" in message.content:
-        await message.channel.send("こんにちは！")
+        if message.author == bot.user:
+            return
 
-    await bot.process_commands(message)  # コマンド処理を忘れずに！
+        if "こんにちは" in message.content:
+            await message.channel.send("こんにちは！")
+
+        await bot.process_commands(message)
+
+    except Exception as e:
+        print(f"❌ Error in on_message: {e}")
+
 
 # Flaskを起動し、Replit常駐化
 keep_alive()
