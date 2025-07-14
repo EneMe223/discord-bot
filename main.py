@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import json
 import os
-
+import asyncio  # ← sleep用に追加
 
 # Discord Bot のトークンを環境変数から取得
 TOKEN = os.getenv("TOKEN")
@@ -55,8 +55,8 @@ async def on_member_join(member):
         log_channel = bot.get_channel(1363185026006515828)
         if log_channel:
             try:
-                await log_channel.send(f"⚠️ {member.mention} が再参加しました（ロール付与）")
-                print("📢 Message sent.")
+                # await log_channel.send(f"⚠️ {member.mention} が再参加しました（ロール付与）")  # ← コメントアウト
+                print(f"📢 Would have sent message: ⚠️ {member.mention} が再参加しました（ロール付与）")
             except Exception as e:
                 print(f"❌ Failed to send message: {e}")
         else:
@@ -72,16 +72,19 @@ async def on_message(message):
             return
 
         if "こんにちは" in message.content:
-            await message.channel.send("こんにちは！")
+            await asyncio.sleep(1)  # ← 1秒待機でAPI制限対策
+            # await message.channel.send("こんにちは！")  # ← コメントアウト
+            print("📢 Would have sent: こんにちは！")  # デバッグ用出力
 
         await bot.process_commands(message)
 
     except Exception as e:
         print(f"❌ Error in on_message: {e}")
 
+# トークン確認
 if TOKEN is None:
     raise ValueError("❌ TOKENが読み込まれていません！環境変数を確認してください。")
 
-
 # Bot起動
 bot.run(TOKEN)
+
