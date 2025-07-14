@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import json
 import os
-from dotenv import load_dotenv
 
 
 # Discord Bot のトークンを環境変数から取得
