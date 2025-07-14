@@ -1,7 +1,3 @@
-import os
-print(f"[DEBUG] TOKEN is: {os.getenv('TOKEN')}")
-raise RuntimeError("強制的にエラーを出します（Render のログ確認テスト）")
-
 import discord
 from discord.ext import commands
 import json
