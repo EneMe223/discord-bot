@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Discord Bot のトークンを環境変数から取得
-TOKEN = os.getenv("DISCORD_TOKEN")
+TOKEN = os.getenv("TOKEN")
 
 # Botの設定
 intents = discord.Intents.all()
