@@ -4,8 +4,6 @@ import json
 import os
 from dotenv import load_dotenv
 
-# .env ファイルの読み込み
-load_dotenv()
 
 # Discord Bot のトークンを環境変数から取得
 TOKEN = os.getenv("TOKEN")
